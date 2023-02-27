@@ -1,0 +1,38 @@
+
+{
+  "name":"NgKicker",
+  "description":"First, enter the words you don't want to appear in the list. When the word or related term is searched, the search results are filtered out.",
+  "version":"1.0.0",
+  "manifest_version":3,
+  "action": {
+    "default_popup":"popup.html"
+  },
+  "icons":{
+    "16":"Ng.png"
+  },
+  "permissions": [
+    "nativeMessaging",
+    "tabs",
+    "storage"
+  ],
+  "content_scripts":[
+    {
+      "matches":["https://www.google.com/*"],
+      "js":["jquery-3.6.3.min.js","content_script.js"]
+    },
+    {
+    "matches":["<all_urls>"],
+    "exclude_matches":["https://www.google.com/*"],
+    "js":["jquery-3.6.3.min.js","warning.js"]
+    }
+  ],
+  "web_accessible_resources":[
+    {
+      "resources":["/alert/*"],
+      "matches":["<all_urls>"]
+    }
+  ],
+  "background": {
+    "service_worker":"back.js"
+  }
+}
